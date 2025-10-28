@@ -70,4 +70,11 @@ lib/
 - **Cross-Platform**: Built with Flutter for iOS and Android compatibility
 
 
+[Download APK](https://github.com/username/project-name/releases/download/v1.0/app-release.apk)
+
+
+[View Screenshots](https://drive.google.com/drive/folders/1OJko8Bri0qvdM3XGXB3r-mBP5ghStDIY?usp=drive_link)
+
+
+[Watch App Demo Video](https://drive.google.com/drive/folders/1azgFLLVrwB4YsGxF2eDLqwJlUDwT6kOV?usp=drive_link)
 
