@@ -1,8 +1,40 @@
 # Fitness App
 
-A pixel-perfect fitness app with dark theme built with Flutter, featuring workout tracking, nutrition monitoring, mood tracking, and hydration management.
+A professional, pixel-perfect fitness app with dark theme built with Flutter, featuring workout tracking, nutrition monitoring, mood tracking, and hydration management. The app includes a comprehensive flavor system for development, staging, and production environments.
 
-## 1. Dependencies Used & Why
+## 🚀 Features
+
+- **Multi-Environment Support**: Separate builds for development, staging, and production
+- **Professional Architecture**: Clean code structure with proper separation of concerns
+- **Dark Theme**: Carefully designed dark theme for optimal user experience
+- **State Management**: BLoC pattern for predictable state management
+- **Error Handling**: Comprehensive error handling and logging system
+- **Modular Design**: Well-organized code structure for maintainability
+- **Cross-Platform**: Built with Flutter for iOS and Android compatibility
+
+## 📱 Environment Flavors
+
+The app supports three different environments with separate configurations:
+
+### Development (dev)
+- **Purpose**: Local development and testing
+- **Features**: Debug logging, mock data, debug banner
+- **API**: Development server
+- **App ID**: `com.example.fitness_app.dev`
+
+### Staging (staging)
+- **Purpose**: Pre-production testing
+- **Features**: Limited logging, real API, testing features
+- **API**: Staging server
+- **App ID**: `com.example.fitness_app.staging`
+
+### Production (prod)
+- **Purpose**: Live app store release
+- **Features**: Minimal logging, real API, optimized performance
+- **API**: Production server
+- **App ID**: `com.example.fitness_app`
+
+## 🛠 Dependencies Used & Why
 
 ### Core Dependencies
 
@@ -28,10 +60,20 @@ A pixel-perfect fitness app with dark theme built with Flutter, featuring workou
 - **flutter_test**: Flutter's testing framework for unit and widget tests
 - **flutter_lints**: ^2.0.0 - Static analysis tool for Dart code to maintain code quality and consistency
 
-## 2. Project Structure
+## 📁 Project Structure
 
 ```
 lib/
+├── config/                  # Configuration and constants
+│   ├── app_config.dart     # Environment configuration management
+│   ├── constants.dart      # App-wide constants and strings
+│   └── environments/       # Environment-specific configurations
+│       ├── dev_config.dart     # Development environment settings
+│       ├── staging_config.dart # Staging environment settings
+│       └── prod_config.dart    # Production environment settings
+├── utils/                   # Utility classes and helpers
+│   ├── logger.dart         # Professional logging system
+│   └── error_handler.dart  # Comprehensive error handling
 ├── bloc/                    # State management layer
 │   ├── home_bloc.dart      # Main BLoC for managing app state
 │   └── home_event.dart     # Events that trigger state changes
@@ -49,25 +91,124 @@ lib/
 │   ├── hydration_widget.dart    # Water intake tracking widget
 │   ├── insights_card.dart       # Progress insights display
 │   └── workout_card.dart        # Workout information display
-└── main.dart               # App entry point and navigation setup
+├── main.dart               # Quick development entry point
+├── main_dev.dart           # Development environment entry point
+├── main_staging.dart       # Staging environment entry point
+└── main_prod.dart          # Production environment entry point
 ```
 
 ### Directory Purposes
 
+- **config/**: Centralized configuration management including environment-specific settings
+- **utils/**: Utility classes for logging, error handling, and other helper functions
 - **bloc/**: Contains the business logic layer using the BLoC pattern for state management
 - **models/**: Defines data structures and state models used throughout the app
 - **screens/**: Contains all the main UI screens that users interact with
 - **theme/**: Centralized theming configuration for consistent UI styling
 - **widgets/**: Reusable UI components that can be used across multiple screens
-- **main.dart**: Application entry point, navigation setup, and global configuration
+- **main_*.dart**: Environment-specific entry points for different build flavors
 
-### Key Features
+## 🏗 Professional Architecture Features
 
+### Environment Management
+- **Separate entry points** for each environment (dev, staging, prod)
+- **Environment-specific configurations** with different API endpoints, logging levels, and features
+- **Build-time configuration** through Android flavors and Flutter targets
+
+### Error Handling & Logging
+- **Comprehensive error handling** with categorized error types
+- **Professional logging system** with different log levels and environment-specific settings
+- **Global error handlers** for uncaught exceptions and Flutter errors
+- **User-friendly error messages** with snackbar notifications
+
+### Code Organization
+- **Constants management** with centralized app-wide constants
+- **Modular architecture** with clear separation of concerns
+- **Reusable components** for consistent UI across the app
+- **Professional naming conventions** and code structure
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Flutter SDK (3.0.0 or higher)
+- Android SDK
+- Git
+
+### Quick Development
+```bash
+# Run development version
+flutter run --flavor dev --target lib/main_dev.dart
+
+# Run staging version
+flutter run --flavor staging --target lib/main_staging.dart
+
+# Run production version
+flutter run --flavor prod --target lib/main_prod.dart
+```
+
+### Building APKs
+
+#### Using Build Scripts
+```bash
+# Build development APK
+scripts/build_dev.bat
+
+# Build staging APK
+scripts/build_staging.bat
+
+# Build production APK
+scripts/build_prod.bat
+
+# Build all flavors
+scripts/build_all.bat
+```
+
+#### Manual Build Commands
+```bash
+# Development
+flutter build apk --flavor dev --target lib/main_dev.dart --release
+
+# Staging
+flutter build apk --flavor staging --target lib/main_staging.dart --release
+
+# Production
+flutter build apk --flavor prod --target lib/main_prod.dart --release
+```
+
+### Output Locations
+- **Development**: `build/app/outputs/flutter-apk/app-dev-release.apk`
+- **Staging**: `build/app/outputs/flutter-apk/app-staging-release.apk`
+- **Production**: `build/app/outputs/flutter-apk/app-prod-release.apk`
+
+## 📚 Documentation
+
+- **[BUILD.md](BUILD.md)**: Comprehensive build instructions and troubleshooting
+- **Code Documentation**: Inline documentation throughout the codebase
+- **Environment Configuration**: Detailed configuration for each environment
+
+## 🔧 Configuration
+
+Each environment has its own configuration file with specific settings:
+
+| Feature | Development | Staging | Production |
+|---------|-------------|---------|------------|
+| Debug Logging | ✅ | ✅ | ❌ |
+| Crash Reporting | ❌ | ✅ | ✅ |
+| Analytics | ❌ | ✅ | ✅ |
+| Debug Menu | ✅ | ❌ | ❌ |
+| Mock Data | ✅ | ❌ | ❌ |
+| Performance Monitoring | ✅ | ✅ | ✅ |
+
+## 🎯 Key Features
+
+- **Multi-Environment Support**: Professional flavor system for different deployment stages
 - **Dark Theme**: Custom dark theme with carefully chosen colors for optimal user experience
 - **State Management**: BLoC pattern for predictable state management
+- **Error Handling**: Comprehensive error handling and logging system
 - **Modular Architecture**: Well-organized code structure for maintainability
 - **Reusable Components**: Custom widgets for consistent UI across the app
 - **Cross-Platform**: Built with Flutter for iOS and Android compatibility
+- **Professional Build System**: Automated build scripts and CI/CD ready configuration
 
 
 [Download APK](https://github.com/username/project-name/releases/download/v1.0/app-release.apk)

@@ -1,12 +1,9 @@
-// This is a simple entry point for quick development
-// For production builds, use the specific flavor files:
-// - lib/main_dev.dart (Development)
-// - lib/main_staging.dart (Staging) 
-// - lib/main_prod.dart (Production)
-
-import 'package:fitness_app/screens/plan_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'config/app_config.dart';
+import 'utils/error_handler.dart';
+import 'utils/logger.dart';
+import 'screens/plan_screen.dart';
 import 'screens/nutrition_screen.dart';
 import 'screens/mood_screen.dart';
 import 'screens/profile_screen.dart';
@@ -15,8 +12,15 @@ import 'bloc/home_bloc.dart';
 import 'bloc/home_event.dart';
 
 void main() {
-  // For quick development, this defaults to dev environment
-  // Use main_dev.dart, main_staging.dart, or main_prod.dart for specific builds
+  // Initialize error handling
+  ErrorHandler.initializeErrorHandling();
+  
+  // Set environment
+  AppConfig.setEnvironment(Environment.dev);
+  
+  // Initialize logger
+  Logger.info('Starting Fitness App in Development mode');
+  
   runApp(const FitnessApp());
 }
 
@@ -32,10 +36,18 @@ class FitnessApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Fitness App',
+        title: AppConfig.appName,
         theme: AppTheme.darkTheme,
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true, // Show debug banner in dev
         home: const MainScreen(),
+        builder: (context, child) {
+          return Banner(
+            message: 'DEV',
+            location: BannerLocation.topEnd,
+            color: Colors.red,
+            child: child!,
+          );
+        },
       ),
     );
   }
@@ -52,7 +64,7 @@ class _MainScreenState extends State<MainScreen> {
   int _currentIndex = 1; // Start with Plan tab selected
 
   final List<Widget> _screens = [
-     const NutritionScreen(),
+    const NutritionScreen(),
     const PlanScreen(),
     const MoodScreen(),
     const ProfileScreen(),
@@ -77,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildNavItem(0,  'Nutrition'),
+            _buildNavItem(0, 'Nutrition'),
             _buildNavItem(1, 'Plan'),
             _buildNavItem(2, 'Mood'),
             _buildNavItem(3, 'Profile'),
@@ -112,13 +124,11 @@ class _MainScreenState extends State<MainScreen> {
                       ? 'assets/icons/plan.png'
                       : index == 2
                           ? 'assets/icons/mode.png'
-                        
-                              : 'assets/icons/profile.png',
+                          : 'assets/icons/profile.png',
               color: isSelected ? AppTheme.accentColor : AppTheme.textSecondary,
               height: 24,
               width: 24,
             ),
-          
             const SizedBox(height: 4),
             Text(
               label,
