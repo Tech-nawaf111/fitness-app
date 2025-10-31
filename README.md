@@ -211,7 +211,7 @@ Each environment has its own configuration file with specific settings:
 - **Professional Build System**: Automated build scripts and CI/CD ready configuration
 
 
-[Download APK](https://github.com/username/project-name/releases/download/v1.0/app-release.apk)
+[Download APK](https://github.com/Tech-nawaf111/fitness-app/blob/master/build/app/outputs/flutter-apk/app-release.apk)
 
 
 [View Screenshots](https://drive.google.com/drive/folders/1OJko8Bri0qvdM3XGXB3r-mBP5ghStDIY?usp=drive_link)
